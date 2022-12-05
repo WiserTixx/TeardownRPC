@@ -107,14 +107,14 @@ int main() {
             std::cout << "Script name: " << scriptName << std::endl;
 
             auto rpcScriptData = base->first_node("mod")->first_node(scriptName.c_str());
-            auto inCampaign = std::stoi(rpcScriptData->first_node("incampaign")->first_attribute()->value());
+            auto gameMode = rpcScriptData->first_node("gamemode")->first_attribute()->value();
             auto levelName = rpcScriptData->first_node("levelname")->first_attribute()->value();
             auto isPaused = std::stoi(rpcScriptData->first_node("ispaused")->first_attribute()->value());
             auto displayLevelName = std::stoi(rpcScriptData->first_node("displaylevelname")->first_attribute()->value());
             auto displayGameMode = std::stoi(rpcScriptData->first_node("displaygamemode")->first_attribute()->value());
             std::string largeImage = "teardown_" + std::string(rpcScriptData->first_node("logotype")->first_attribute()->value()); //normal, black, white, gold
 
-            auto details = !displayGameMode ? "" : isPaused ? "In the menus" : inCampaign ? "Campaign" : "Sandbox";
+            auto details = !displayGameMode ? "" : isPaused ? "In the menus" : gameMode;
             auto state = !displayLevelName ? "" : isPaused ? "" : levelName;
 			
             RPCUtils::SetPresence(state, details, largeImage.c_str(), "Teardown", startTime.QuadPart / 10000000);

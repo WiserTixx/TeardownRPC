@@ -42,8 +42,3 @@ void RPCUtils::SetPresence(const char* state, const char* details, const char* l
 		}
 		});
 }
-
-void RPCUtils::RunCallbacks()
-{
-	core->RunCallbacks();
-}

@@ -23,8 +23,7 @@ jobs:
       run: msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}
 
     - name: Move discord dll
-      working-directory: ${{env.SOLUTION_FILE_PATH}}\x64\Release\
-      run: Rename-Item ${{env.SOLUTION_FILE_PATH}}\discord_game_sdk.dll discord_game_sdk.dll
+      run: Rename-Item D:\a\TeardownRPC\TeardownRPC\discord_game_sdk.dll D:\a\TeardownRPC\TeardownRPC\x64\Release\discord_game_sdk.dll
 
     - name: Upload the files
       uses: "marvinpinto/action-automatic-releases@latest"

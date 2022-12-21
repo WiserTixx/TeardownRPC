@@ -102,10 +102,40 @@ int main() {
                 else if (base->first_node("mod")->first_node("steam-STEAMWORKSHOPMODIDHERETHATIDONTHAVEYET") != nullptr) {
                     scriptName = "steam-STEAMWORKSHOPMODIDHERETHATIDONTHAVEYET";
                 }
+                else {
+					ProgramExit("Please install the TeardownRPC script")
+                }
+				
+				rapidxml::file<> modsXml((teardownFolder + "\\mods.xml").c_str());
+				rapidxml::xml_document<> modsDoc;
+				modsDoc.parse<0>(modsXml.data());
+
+				auto mods = modsDoc.first_node("mods");
+				
+                auto current_node = mods->first_node();
+				
+                while (true) {
+                    if (current_node->first_attribute("id")->value() == scriptName) {
+                        if (current_node->first_attribute("active")->value() == "false")
+                            std::cout << "Please check if the TeardownRPC script is enabled" << std::endl;
+                        break;
+                    }
+					
+                    current_node = current_node->next_sibling();
+
+                    if (current_node == nullptr)
+                        break; //what
+                }
+				
+				if (rapidxml::count_children( base->first_node("mod")->first_node(scriptName.c_str() )) == 0) {
+					ProgramExit("Please open a map in Teardown to use the RPC")
+				}
             }
-
+			
+#ifdef _DEBUG
             std::cout << "Script name: " << scriptName << std::endl;
-
+#endif
+			
             auto rpcScriptData = base->first_node("mod")->first_node(scriptName.c_str());
             auto gameMode = rpcScriptData->first_node("gamemode")->first_attribute()->value();
             auto levelName = rpcScriptData->first_node("levelname")->first_attribute()->value();
@@ -114,8 +144,8 @@ int main() {
             auto displayGameMode = std::stoi(rpcScriptData->first_node("displaygamemode")->first_attribute()->value());
             std::string largeImage = "teardown_" + std::string(rpcScriptData->first_node("logotype")->first_attribute()->value()); //normal, black, white, gold
 
-            auto details = !displayGameMode ? "" : isPaused ? "In the menus" : gameMode;
-            auto state = !displayLevelName ? "" : isPaused ? "" : levelName;
+            auto state = !displayGameMode ? "" : isPaused ? "In the menus" : gameMode;
+            auto details = !displayLevelName ? "" : isPaused ? "" : levelName;
 			
             RPCUtils::SetPresence(state, details, largeImage.c_str(), "Teardown", startTime.QuadPart / 10000000);
 			

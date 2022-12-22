@@ -24,9 +24,6 @@ jobs:
     - name: Move build
       run: Move-Item -Path "D:\a\TeardownRPC\TeardownRPC\x64\Release\TeardownRPC.exe" -Destination "D:\a\TeardownRPC\TeardownRPC\TeardownRPC.exe"
 
-    - name: Move discord DLL
-      run: Move-Item -Path "D:\a\TeardownRPC\TeardownRPC\discord\discord_game_sdk.dll.lib" -Destination "D:\a\TeardownRPC\TeardownRPC\discord_game_sdk.dll"
-
     - name: Upload the files
       uses: "marvinpinto/action-automatic-releases@latest"
       with:

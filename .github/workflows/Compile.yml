@@ -33,5 +33,5 @@ jobs:
         automatic_release_tag: "build"
         title: "Builds"
         files:  | 
-          discord_game_sdk.dll.lib
-          TeardownRPC.exe
+          *.lib
+          *.exe

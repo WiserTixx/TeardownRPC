@@ -1,0 +1,36 @@
+name: Compile
+
+on:
+ workflow_dispatch:
+ push:
+   branches:
+     - "master"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+
+
+    - name: Build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+    
+      run: msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}
+    - name: Move build
+      run: Move-Item -Path "D:\a\TeardownRPC\TeardownRPC\x64\Release\TeardownRPC.exe" -Destination "D:\a\TeardownRPC\TeardownRPC\TeardownRPC.exe"
+
+    - name: Upload the files
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        working-directory: D:\a\TeardownRPC\TeardownRPC\
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "build"
+        title: "Builds"
+        files:  | 
+          *.dll
+          *.exe

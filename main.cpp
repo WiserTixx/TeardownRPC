@@ -90,9 +90,7 @@ int main() {
             doc.parse<0>(xml.data());
             
             auto base = doc.first_node("registry")->first_node("savegame");
-            auto destroyedVoxels = base->first_node("stats")->first_node("brokenvoxels")->first_attribute()->value();
-            auto destroyedTreadmills = base->first_node("stats")->first_node("brokentreadmills")->first_attribute()->value();
-			
+            
             static std::string scriptName = "";
 
             if (scriptName == "") {
@@ -132,14 +130,10 @@ int main() {
 				}
             }
 			
-#ifdef _DEBUG
-            std::cout << "Script name: " << scriptName << std::endl;
-#endif
-			
             auto rpcScriptData = base->first_node("mod")->first_node(scriptName.c_str());
             auto gameMode = rpcScriptData->first_node("gamemode")->first_attribute()->value();
             auto levelName = rpcScriptData->first_node("levelname")->first_attribute()->value();
-            auto isPaused = std::stoi(rpcScriptData->first_node("ispaused")->first_attribute()->value());
+            auto isPaused = false;//std::stoi(rpcScriptData->first_node("ispaused")->first_attribute()->value()); maybe once....
             auto displayLevelName = std::stoi(rpcScriptData->first_node("displaylevelname")->first_attribute()->value());
             auto displayGameMode = std::stoi(rpcScriptData->first_node("displaygamemode")->first_attribute()->value());
             std::string largeImage = "teardown_" + std::string(rpcScriptData->first_node("logotype")->first_attribute()->value()); //normal, black, white, gold

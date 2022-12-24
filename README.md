@@ -17,3 +17,6 @@ TeardownRPC is a Discord Rich Presence for the game [Teardown](https://store.ste
 
 ## How do I compile it myself?
 Download the source code from the green "code" button above, then open the sln file with Visual Studio 2022
+
+## Extras
+The discord sdk (everything in discord/ and the game sdk dll) are from [here](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)

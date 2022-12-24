@@ -4,7 +4,7 @@ The source code for the TeardownRPC host.
 
 ## How do I use TeardownRPC?
 1. Download discord_game_sdk.dll and TeardownRPC.exe from the "Releases" tab on right
-2. Install the TeardownRPC mod from the steam workshop
+2. Install [the TeardownRPC mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2905810555) from the steam workshop
 3. Start Teardown and enable the TeardownRPC mod
 4. Open a map in Teardown
 5. Make sure that you have [the desktop version of discord](https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86) open 

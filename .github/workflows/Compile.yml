@@ -30,6 +30,7 @@ jobs:
         working-directory: D:\a\TeardownRPC\TeardownRPC\
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "build"
+        prerelease: false
         title: "Builds"
         files:  | 
           *.dll

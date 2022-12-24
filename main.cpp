@@ -94,11 +94,11 @@ int main() {
             static std::string scriptName = "";
 
             if (scriptName == "") {
-                if (base->first_node("mod")->first_node("local-teardownrpc") != nullptr) {
-                    scriptName = "local-teardownrpc";
+                if (base->first_node("mod")->first_node("steam-2905810555") != nullptr) {
+                    scriptName = "steam-2905810555";
                 }
-                else if (base->first_node("mod")->first_node("steam-STEAMWORKSHOPMODIDHERETHATIDONTHAVEYET") != nullptr) {
-                    scriptName = "steam-STEAMWORKSHOPMODIDHERETHATIDONTHAVEYET";
+                else if (base->first_node("mod")->first_node("local-teardownrpc") != nullptr) {
+                    scriptName = "local-teardownrpc";
                 }
                 else {
 					ProgramExit("Please install the TeardownRPC script")
